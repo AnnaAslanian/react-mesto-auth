@@ -1,0 +1,21 @@
+.header {
+    margin: 0 200px;
+  }
+
+  .header:after {
+    content: '';
+    display: block;
+    max-width: 880px;
+    opacity: 0.7;
+    border-bottom: 1px solid #545454;
+  }
+
+  
+@media screen and (min-width: 320px) and (max-width: 1100px){
+    .header {
+        margin: 0;
+    }
+    .header:after {
+        max-width: 100%;
+    }
+}
