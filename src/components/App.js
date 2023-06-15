@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react"
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { api } from "../utils/Api"
 import Header from "./Header"
 import Footer from "./Footer"
 import Main from "./Main"
 import ImagePopup from "./ImagePopup"
 import { CurrentUserContext } from "../contexts/CurrentUserContext"
-import PopupWithForm from "./PopupWithForm"
 import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
 import AddPlacePopup from "./AddPlacePopup"
@@ -218,43 +218,76 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="body">
         <div className="root">
-          <Header />
-          <Main
-            onEditAvatar={handleEditAvatarClick}
-            onEditProfile={handleEditProfileClick}
-            onAddPlace={handleAddPlaceClick}
-            onCardClick={handleCardClick}
-            onCardLike={handleCardLike}
-            onCardDelete={handleCardDelete}
-            cards={cards}
-          />
-          <Footer />
-          <EditProfilePopup
-            isOpen={isEditProfilePopupOpen}
-            onClose={closeAllPopups}
-            onUpdateUser={handleUpdateUser}
-          />
-          <EditAvatarPopup
-            isOpen={isEditAvatarPopupOpen}
-            onClose={closeAllPopups}
-            onUpdateAvatar={handleUpdateAvatar}
-          />
-          <AddPlacePopup
-            isOpen={isAddPlacePopupOpen}
-            onClose={closeAllPopups}
-            onAddPlace={addCard}
-          />
-          <PopupWithForm
-            title={"Вы уверены"}
-            name={"delete"}
-            onClose={closeAllPopups}
-            buttonText={"Вы уверены?"}
-          ></PopupWithForm>
-          <ImagePopup card={selectedCard} onClose={closeAllPopups} />
-        </div>
-      </div>
-    </CurrentUserContext.Provider>
-  )
+          <Header userEmail={userEmail} onSignOut={onSignOut}/>
+
+
+          <Routes>
+
+<Route path="/sign-in" element={<Login onLogin={handleLogin} renderLoading={renderLoading ? "Вход..." : "Войти"}/>}  />
+
+<Route path="/sign-up" element={<Register onRegister={handleRegister} renderLoading={renderLoading ? "Регистрация..." : "Зарегистрироваться"}/>}/>
+
+
+
+<Route  
+  path="/"
+  element={<ProtectedRoute 
+    onEditAvatar={handleEditAvatarClick}
+    onEditProfile={handleEditProfileClick}
+    onAddPlace={handleAddPlaceClick}
+    onCardClick={handleCardClick}
+    onCardLike={handleCardLike}
+    onCardDelete={handleCardDelete}
+    handleDeleteCardClick={handleDeleteCardClick}
+    cards={cards}
+    loggedIn={loggedIn}
+    element={Main}
+  />}
+/>
+
+<Route path="*" element={<Navigate to={loggedIn ? '/' : '/sign-in'}/>} />
+
+
+</Routes>
+
+
+<Footer />
+<EditProfilePopup
+isOpen={isEditProfilePopupOpen}
+onClose={closeAllPopups}
+onUpdateUser={handleUpdateUser}
+renderLoading={renderLoading ? "Сохранение..." : "Сохранить"}
+/>
+<EditAvatarPopup
+isOpen={isEditAvatarPopupOpen}
+onClose={closeAllPopups}
+onUpdateAvatar={handleUpdateAvatar}
+renderLoading={renderLoading ? "Сохранение..." : "Сохранить"}
+/>
+<AddPlacePopup
+isOpen={isAddPlacePopupOpen}
+onClose={closeAllPopups}
+onAddPlace={addCard}
+renderLoading={renderLoading ? "Создание..." : "Создать"}
+/>
+<DeleteConfirmPopup 
+isOpen={isDeleteCardPopup}
+onClose={closeAllPopups}
+onCardDelete={handleCardDelete}
+renderLoading={renderLoading ? "Удаление..." : "Да"}
+card={selectedCard}
+/>
+<InfoTooltip 
+isOpen={isInfotooltipPopupOpen}
+onClose={closeAllPopups}
+success={success}
+tooltipText={success ? "Вы успешно зарегистрировались!" : "Что-то пошло не так! Попробуйте ещё раз."}
+/>
+<ImagePopup card={selectedCard} onClose={closeAllPopups} />
+</div>
+</div>
+</CurrentUserContext.Provider>
+)
 }
 
 export default App

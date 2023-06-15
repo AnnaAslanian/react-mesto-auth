@@ -1,30 +1,31 @@
-import success from "../images/success.svg";
-import fail from "../images/fail.svg"
-import Popup from "./Popup";
+import React from "react";
+import errorImage from "../images/error.svg"
+import goodImage from "../images/good.svg"
 
-const ICONS = {
-  success: success,
-  fail: fail
-}
-
-function InfoToolTip({ onClose, isOpen, status: { iconType, text } = {}, isRegisterSuccess}) {
-    return (
-      <Popup
-        name="tooltip"
-        title=""
-        isOpen={isOpen}
-        onClose={onClose}
+function InfoTooltip({ isOpen, onClose, success, tooltipText }) {
+  return (
+    <div 
+    className={`popup popup_tooltip ${isOpen ? "popup_opened" : ""}`}
+    >
+      <div 
+      className="popup__container"
       >
-        <img
-          src={ICONS[iconType]}
-          className="popup__tooltip-img"
-          alt={text}
+        <img 
+        className="popup__tooltip-image" 
+        src={success ? goodImage : errorImage} 
         />
-        <h2 className="popup__tooltip-info">
-          {text}
-        </h2>
-      </Popup>
-    );
+        <p 
+        className="popup__tooltip-text">
+          {tooltipText}
+          </p>
+        <button 
+        type="button" 
+        className="popup__close" 
+        onClick={onClose} 
+        />
+      </div>
+    </div>
+  )
 }
 
-export default InfoToolTip;
+export default InfoTooltip
