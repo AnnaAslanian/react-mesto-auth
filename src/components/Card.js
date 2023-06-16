@@ -5,7 +5,7 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   const currentUser = useContext(CurrentUserContext)
   const isOwn = card.owner._id === currentUser._id
   const isLiked = card.likes.some((i) => i._id === currentUser._id)
-  const cardLikeButtonClassName  = `element__logo ${isLiked && "element__logo_active"}`
+  const cardLikeButtonClassName = `element__logo ${isLiked && "element__logo_active"}`
 
   function handleClick() {
     onCardClick(card)
@@ -18,38 +18,38 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
   }
 
   return (
-    <div 
-    className="element"
+    <div
+      className="element"
     >
-      {isOwn && ( <button 
-      className="element__delete" 
-      type="button" 
-      aria-label="Удалить" 
-      onClick={() => handleDeleteClick(card)}>
+      {isOwn && (<button
+        className="element__delete"
+        type="button"
+        aria-label="Удалить"
+        onClick={() => handleDeleteClick(card)}>
       </button>)}
-      <img 
-      className="element__img" 
-      src={card.link} 
-      alt={card.name} 
-      onClick={() => handleClick(card)} 
+      <img
+        className="element__img"
+        src={card.link}
+        alt={card.name}
+        onClick={() => handleClick(card)}
       />
-      <div 
-      className="element__group">
-        <h2 
-        className="element__name">
+      <div
+        className="element__group">
+        <h2
+          className="element__name">
           {card.name}
-          </h2>
+        </h2>
         <div>
-          <button 
-          className={cardLikeButtonClassName} 
-          type="button" 
-          aria-label="Нравится" 
-          onClick={() => handleLikeClick(card)}>
+          <button
+            className={cardLikeButtonClassName}
+            type="button"
+            aria-label="Нравится"
+            onClick={() => handleLikeClick(card)}>
           </button>
-          <div 
-          className="elements__number-like">
+          <div
+            className="elements__number-like">
             {card.likes.length}
-            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -58,4 +58,3 @@ function Card({ card, onCardClick, onCardLike, onCardDelete }) {
 
 export default Card
 
-  

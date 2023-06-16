@@ -1,7 +1,7 @@
 import React from 'react';
 import PopupWithForm from "./PopupWithForm"
 
-function DeleteConfirmPopup({ isOpen, onClose, onCardDelete, renderLoading, card}) {
+function DeleteConfirmPopup({ isOpen, onClose, onCardDelete, renderLoading, card }) {
     function handleDeleteCardClick(event) {
         event.preventDefault();
         onCardDelete(card);
@@ -9,13 +9,13 @@ function DeleteConfirmPopup({ isOpen, onClose, onCardDelete, renderLoading, card
 
     return (
         <PopupWithForm
-        title={"Вы уверены"}
-        name={"delete"}
-        isOpen={isOpen}
-        onClose={onClose}
-        onSubmit={handleDeleteCardClick}
-        renderLoading={renderLoading}
-      ></PopupWithForm>
+            title={"Вы уверены"}
+            name={"delete"}
+            isOpen={isOpen}
+            onClose={onClose}
+            onSubmit={handleDeleteCardClick}
+            renderLoading={renderLoading}
+        ></PopupWithForm>
     )
 }
 

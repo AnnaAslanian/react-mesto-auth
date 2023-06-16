@@ -79,10 +79,10 @@ class Api {
   }
 }
 
-  export const api = new Api({
-    url: "https://mesto.nomoreparties.co/v1/cohort-64",
-    headers: {
-      authorization: "7cf989fb-78d7-4f6e-a4e2-acdd5898437e",
-      "content-type": "application/json",
-    },
-  });
+export const api = new Api({
+  url: "https://mesto.nomoreparties.co/v1/cohort-64",
+  headers: {
+    authorization: "7cf989fb-78d7-4f6e-a4e2-acdd5898437e",
+    "content-type": "application/json",
+  },
+});

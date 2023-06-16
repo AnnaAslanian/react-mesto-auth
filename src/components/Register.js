@@ -20,8 +20,8 @@ function Register({ onRegister, renderLoading }) {
 
   return (
     <div className="register">
-        <h2 className="register__title">Регистрация</h2>
-        <form
+      <h2 className="register__title">Регистрация</h2>
+      <form
         className="register__form"
         onSubmit={handleSubmit}
       >
@@ -35,6 +35,7 @@ function Register({ onRegister, renderLoading }) {
           maxLength="40"
           name="email-register"
           onChange={handleEmail}
+          value={email}
         />
         <input
           id="register-password"
@@ -46,18 +47,19 @@ function Register({ onRegister, renderLoading }) {
           maxLength="40"
           name="password-register"
           onChange={handlePassword}
+        value={password}
         />
         <button
           type="submit"
           className="register__btn"
         >{renderLoading}
         </button>
-        </form>
-        <p 
+      </form>
+      <p
         className="register__question"
-        >
-          Уже зарегистрированы?{" "}
-          <Link to="/sign-in" className="register__link">Войти</Link></p>
+      >
+        Уже зарегистрированы?{" "}
+        <Link to="/sign-in" className="register__link">Войти</Link></p>
     </div>
   );
 }
