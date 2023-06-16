@@ -5,11 +5,11 @@ function Register({ onRegister, renderLoading }) {
   const [email, setEmail] = React.useState('');
   const [password, setPassword] = React.useState('');
 
-  function handleEmailChange(evt) {
+  function handleEmail(evt) {
     setEmail(evt.target.value);
   }
 
-  function handlePasswordChange(evt) {
+  function handlePassword(evt) {
     setPassword(evt.target.value);
   }
 
@@ -19,43 +19,47 @@ function Register({ onRegister, renderLoading }) {
   }
 
   return (
-    <div className="auth">
-        <h2 className="auth__title">Регистрация</h2>
+    <div className="register">
+        <h2 className="register__title">Регистрация</h2>
         <form
-        className="auth__form"
+        className="register__form"
         onSubmit={handleSubmit}
       >
         <input
-          id="auth-email"
+          id="register-email"
           required=""
-          className="auth__input"
+          className="register__input"
           type="email"
           placeholder="Email"
           minLength="5"
           maxLength="40"
           name="email-register"
-          onChange={handleEmailChange}
+          onChange={handleEmail}
         />
         <input
-          id="auth-password"
+          id="register-password"
           required=""
-          className="auth__input"
+          className="register__input"
           type="password"
           placeholder="Пароль"
           minLength="5"
           maxLength="40"
           name="password-register"
-          onChange={handlePasswordChange}
+          onChange={handlePassword}
         />
         <button
           type="submit"
-          className="auth__btn"
+          className="register__btn"
         >{renderLoading}
         </button>
         </form>
-        <p className="auth__question">Уже зарегистрированы?{" "}<Link to="/sign-in" className="auth__link">Войти</Link></p>
+        <p 
+        className="register__question"
+        >
+          Уже зарегистрированы?{" "}
+          <Link to="/sign-in" className="register__link">Войти</Link></p>
     </div>
   );
 }
 
-export default Register;
+export default Register

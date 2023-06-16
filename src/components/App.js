@@ -10,11 +10,11 @@ import EditProfilePopup from "./EditProfilePopup"
 import EditAvatarPopup from "./EditAvatarPopup"
 import AddPlacePopup from "./AddPlacePopup"
 import DeleteConfirmPopup from "./DeleteConfirmPopup"
-import Login from "../components/Login"
-import Register from "../components/Register"
-import ProtectedRoute from "../components/ProtectedRoute"
+import Login from "./Login"
+import Register from "./Register"
+import ProtectedRoute from "./ProtectedRoute"
 import * as Auth from "../utils/Auth"
-import InfoTooltip from "../components/InfoTooltip"
+import InfoTooltip from "./InfoTooltip"
 
 
 function App() {
@@ -85,6 +85,7 @@ function App() {
   };
 
   function handleUpdateAvatar(link) {
+    setRenderLoading(true)
     api
       .getEditAvatar(link)
       .then((item) => {
@@ -98,6 +99,7 @@ function App() {
   };
 
   function handleUpdateUser(data) {
+    setRenderLoading(true)
     api
       .getEditUser(data)
       .then((userInfo) => {
@@ -116,7 +118,7 @@ function App() {
       .getInitialUser()
       .then((userInfo) => setCurrentUser(userInfo))
       .catch((err) => console.log(`Ошибка ${err}`))
-  }}, []);
+  }}, [loggedIn]);
 
   function handleCardLike(card) {
     const isLiked = card.likes.some((i) => i._id === currentUser._id)
@@ -151,6 +153,7 @@ function App() {
     .register(email, password)
     .then(() => {
       setSuccess(true);
+      setInfotooltipPopupOpen(true);
       navigate('/sign-in');
     })
     .catch((err) => {

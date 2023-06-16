@@ -3,7 +3,7 @@ import PopupWithForm from "./PopupWithForm.js"
 import { CurrentUserContext } from "../contexts/CurrentUserContext.js"
 
 
-function EditProfilePopup({ isOpen, onClose, ...props }) {
+function EditProfilePopup({ isOpen, onClose, renderLoading, ...props }) {
 
     const [name, setName] = useState("")
     const [description, setDescription] = useState("")
@@ -30,6 +30,8 @@ function EditProfilePopup({ isOpen, onClose, ...props }) {
             isOpen={isOpen}
             onClose={onClose}
             onSubmit={handleSubmit}
+            renderLoading={renderLoading}
+            
         >
                 <input
                     className="popup__name popup__name_input_value"

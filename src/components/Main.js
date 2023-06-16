@@ -2,9 +2,8 @@ import React , { useContext } from "react";
 import { CurrentUserContext } from "../contexts/CurrentUserContext";
 import Card from "./Card";
 
-function Main ({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, cards }) {
+function Main ({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLike, onCardDelete, handleDeleteCardClick, cards }) {
   const currentUser = useContext(CurrentUserContext);
-
     return (
 <div>
           <div className="profile">
@@ -27,7 +26,7 @@ function Main ({ onEditProfile, onAddPlace, onEditAvatar, onCardClick, onCardLik
             <ul className="elements__list">
             {cards.map((card) => (
             <li key={card._id}>
-              <Card card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete} />
+              <Card card={card} onCardClick={onCardClick} onCardLike={onCardLike} onCardDelete={onCardDelete}  handleDeleteCardClick={handleDeleteCardClick} />
             </li>
           ))}
             </ul>

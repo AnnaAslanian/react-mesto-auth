@@ -1,4 +1,4 @@
-.auth__input {
+.register__input {
     padding: 0;
     padding-bottom: 13px;
     margin-bottom: 30px;
@@ -13,12 +13,12 @@
     border-bottom: 2px solid #CCC;
 }
 
-.auth__input:focus {
+.register__input:focus {
     outline: none;
   }
 
 @media screen and (max-width: 767px) {
-    .auth__input {
+    .register__input {
       width: 238px;
     }
   }

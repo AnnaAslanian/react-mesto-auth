@@ -1,12 +1,17 @@
-.header__logo {
+.header__logo{
     max-width: 142px;
-    margin: 45px auto 41px 0;
-    object-fit: cover;
- }
-
- @media screen and (min-width: 320px) and (max-width: 1100px) {
-    .header__logo {
+    min-height: 33px;
+    margin: 0;
+    padding: 0;
+    margin-top: 45px;
+}
+@media screen and (max-width: 767px){
+    .header__logo{
         max-width: 103.74px;
-        margin: 28px auto 30px 27px;
+        min-height: 24.4px;
+        margin-top: 28px;
+        padding-bottom: 31.6px;
+        width: 103.74px;
+        height: 24.4px;
     }
 }

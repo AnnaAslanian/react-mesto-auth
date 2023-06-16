@@ -10,7 +10,7 @@ class Api {
       headers: this._headers
     }).then((res) => this._getResponse(res))
   }
-  _response(res) {
+  _getResponse(res) {
     if (res.ok) {
       return res.json()
     }
